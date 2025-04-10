@@ -1,0 +1,68 @@
+services:
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "80:80"
+    depends_on:
+      - books-service
+      - users-service
+      - rentals-service
+    networks:
+     - library_net
+
+  books-service:
+    build: ./services/books-service
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - MONGO_URL=mongodb://mongo:27017/books-db
+    depends_on:
+      - mongo
+    networks:
+      - library_net
+
+  users-service:
+    build: ./services/users-service
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - MONGO_URL=mongodb://mongo:27017/users-db
+    depends_on:
+      - mongo
+    networks:
+      - library_net
+
+  rentals-service:
+    build: ./services/rentals-service
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - MONGO_URL=mongodb://mongo:27017/rentals-db
+    depends_on:
+      - mongo
+    networks:
+      - library_net
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - library_net
+
+  frontend:
+    build: ./biblioteca-front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+    networks:
+      - library_net
+
+networks:
+  library_net:
+    driver: bridge
