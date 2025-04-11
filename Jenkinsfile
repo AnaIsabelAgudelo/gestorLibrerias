@@ -3,27 +3,24 @@ pipeline {
 
   stages {
 
-    stage('Mensaje') {
+    stage('Down containers') {
       steps {
-        sh 'Hola...'
+        scrpit {
+        } else {
+          bat 'docker compose down'
+        }
       }
     }
 
-    stage('Clonar código') {
+    stage('Build and up containers') {
       steps {
-        git 'https://github.com/AnaIsabelAgudelo/gestorLibrerias.git'
-      }
-    }
-
-    stage('Construir contenedores') {
-      steps {
-        sh 'docker compose build'
-      }
-    }
-
-    stage('Levantar contenedores') {
-      steps {
-        sh 'docker compose up -d'
+        scrpit {
+          if (isUnix()) {
+            bat 'docker compose up --build -d'
+          }
+        } else {
+          bat 'docker compose up --build -d'
+        }
       }
     }
   }
