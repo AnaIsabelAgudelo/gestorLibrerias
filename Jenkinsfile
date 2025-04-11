@@ -6,7 +6,7 @@ pipeline {
       steps {
         script {
           echo 'Deteniendo contenedores...'
-          bat 'docker compose down || echo "No hay contenedores para detener."'
+          bat 'docker compose down'
         }
       }
     }
