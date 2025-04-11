@@ -2,15 +2,21 @@ pipeline {
   agent any
 
   stages {
-    stage('Tumbar contenedores') {
+    stage('Clonar código') {
       steps {
-        sh 'docker-compose down -v --remove-orphans'
+        git 'https://tu-repo.git'
+      }
+    }
+
+    stage('Construir contenedores') {
+      steps {
+        sh 'docker compose build'
       }
     }
 
     stage('Levantar contenedores') {
       steps {
-        sh 'docker compose up --build -d'
+        sh 'docker compose up -d'
       }
     }
   }
