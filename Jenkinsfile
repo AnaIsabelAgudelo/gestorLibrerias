@@ -2,9 +2,16 @@ pipeline {
   agent any
 
   stages {
+
+    stage('Construir contenedores') {
+      steps {
+        sh 'docker compose build'
+      }
+    }
+
     stage('Clonar código') {
       steps {
-        git 'https://tu-repo.git'
+        git 'https://github.com/AnaIsabelAgudelo/gestorLibrerias.git'
       }
     }
 
