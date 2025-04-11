@@ -3,9 +3,9 @@ pipeline {
 
   stages {
 
-    stage('Construir contenedores') {
+    stage('Mensaje') {
       steps {
-        sh 'docker compose build'
+        sh 'Hola...'
       }
     }
 
