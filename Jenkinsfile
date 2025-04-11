@@ -2,23 +2,19 @@ pipeline {
   agent any
 
   stages {
-
     stage('Down containers') {
       steps {
-        scrpit {
-        } else {
-          bat 'docker compose down'
+        script {
+          echo 'Deteniendo contenedores...'
+          bat 'docker compose down || echo "No hay contenedores para detener."'
         }
       }
     }
 
     stage('Build and up containers') {
       steps {
-        scrpit {
-          if (isUnix()) {
-            bat 'docker compose up --build -d'
-          }
-        } else {
+        script {
+          echo 'Construyendo y levantando contenedores...'
           bat 'docker compose up --build -d'
         }
       }
