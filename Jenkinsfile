@@ -10,7 +10,6 @@ pipeline {
         }
       }
     }
-
     stage('Build and up containers') {
       steps {
         script {
