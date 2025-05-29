@@ -2,7 +2,8 @@ pipeline {
   agent any
 
   environment {
-    TERRAFORM_WORKING_DIR = './terraform'  // Ajusta si tu carpeta terraform está en otra ruta
+    TERRAFORM_BIN = 'C:\\Terraform\\terraform.exe'        
+    TERRAFORM_WORKING_DIR = 'terraform'                   
   }
 
   stages {
@@ -10,7 +11,7 @@ pipeline {
       steps {
         script {
           echo 'Inicializando Terraform...'
-          bat "cd ${env.TERRAFORM_WORKING_DIR} && terraform init"
+          bat "${env.TERRAFORM_BIN} -chdir=${env.TERRAFORM_WORKING_DIR} init"
         }
       }
     }
@@ -18,8 +19,8 @@ pipeline {
     stage('Terraform Plan') {
       steps {
         script {
-          echo 'Generando plan Terraform...'
-          bat "cd ${env.TERRAFORM_WORKING_DIR} && terraform plan -out=tfplan"
+          echo 'Planeando infraestructura...'
+          bat "${env.TERRAFORM_BIN} -chdir=${env.TERRAFORM_WORKING_DIR} plan -out=tfplan"
         }
       }
     }
@@ -27,8 +28,8 @@ pipeline {
     stage('Terraform Apply') {
       steps {
         script {
-          echo 'Aplicando plan Terraform...'
-          bat "cd ${env.TERRAFORM_WORKING_DIR} && terraform apply -auto-approve tfplan"
+          echo 'Aplicando infraestructura...'
+          bat "${env.TERRAFORM_BIN} -chdir=${env.TERRAFORM_WORKING_DIR} apply -auto-approve tfplan"
         }
       }
     }
