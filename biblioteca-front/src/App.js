@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import Users from './pages/Users';
+import Rentals from './pages/Rentals';
 
 // Estas vistas puedes crearlas después
-const Users = () => <div className="container mt-4"><h2>Usuarios</h2></div>;
-const Rentals = () => <div className="container mt-4"><h2>Alquileres</h2></div>;
 const Books = () => <Home />; // Puedes crear Books.js luego, ahora apunta a Home.js
 
 function App() {

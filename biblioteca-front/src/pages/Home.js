@@ -16,7 +16,7 @@ const books = [
   {
     title: 'El Principito',
     description: 'Una fábula poética de Antoine de Saint-Exupéry que nos recuerda lo esencial de la vida.',
-    image: 'https://voydeviaje.lavoz.com.ar/resizer/v2/L4MON5RBGNHENIXNVEBNMWNIGE.jpg?quality=75&smart=true&auth=27599a61a346b73b8f04a7ad0480cf5da49338b45ddfd1d23e1b967325a292e9&width=800&height=450',
+    image: 'https://www.ahorasanjuan.com/wp-content/uploads/2021/08/principito.jpg',
   },
 ];
 

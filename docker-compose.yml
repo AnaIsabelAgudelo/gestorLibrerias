@@ -63,6 +63,8 @@ services:
       - "3000:3000"
     depends_on:
       - api-gateway
+    environment:
+    - CHOKIDAR_USEPOLLING=true  
     networks:
       - library_net
 
